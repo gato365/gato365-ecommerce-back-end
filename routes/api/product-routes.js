@@ -12,13 +12,23 @@ router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({
 
-      include: [Product]
+      include: [
+        {
+          model: Category,
+          required: true
+        },
+        {
+          model: Tag,
+          through: ProductTag,
+          as: 'prod_has_tag'
+        }
+      ]
 
     });
 
 
 
-    res.status(200).json(categoriesData);
+    res.status(200).json(productData);
 
   } catch (err) {
 
@@ -28,9 +38,39 @@ router.get('/', async (req, res) => {
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+
+
+  try {
+    const productData = await Product.findOne({
+      where: { id: req.params.id },
+      include: [
+        {
+          model: Category,
+          required: true
+        },
+        {
+          model: Tag,
+          through: ProductTag,
+          as: 'prod_has_tag'
+        }
+      ]
+
+    });
+
+
+
+    res.status(200).json(productData);
+
+  } catch (err) {
+
+    res.status(500).json(err);
+
+  }
+
+
 });
 
 // create new product
@@ -89,7 +129,7 @@ router.put('/:id', (req, res) => {
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
 
 
-      
+
       // create filtered list of new tag_ids
       const newProductTags = req.body.tagIds
         .filter((tag_id) => !productTagIds.includes(tag_id))
@@ -102,7 +142,7 @@ router.put('/:id', (req, res) => {
 
 
 
-        
+
       // figure out which ones to remove
       const productTagsToRemove = productTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
