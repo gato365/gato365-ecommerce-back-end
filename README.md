@@ -19,9 +19,13 @@ The example I'm using is an e-commerce application with three main tables (produ
 * Implement CRUD methodologies
 * Develop database logic using an e-commerce example
 
+## Video Demonstration
+[Video](https://youtu.be/3pVvPtADcqI)
+
+
 ## Progress
 
 * [x] Setup the database
 * [x] Established the tables
 * [x] Implemented the CRUD methods
-* [ ] Develop the database logic
+* [x] Develop the database logic
