@@ -20,7 +20,7 @@ The example I'm using is an e-commerce application with three main tables (produ
 * Develop database logic using an e-commerce example
 
 ## Video Demonstration
-[Video](https://github.com/gato365/gato365-ecommerce-back-end)
+[Video](https://youtu.be/lPoOEijx5q0)
 
 
 ## Progress
