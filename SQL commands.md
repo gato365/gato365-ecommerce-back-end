@@ -11,4 +11,5 @@ Node JS Stuff
  - npm start
  - npm init
  - npm i ___
+ - npm install (when you first get a project with package-.json)
 
